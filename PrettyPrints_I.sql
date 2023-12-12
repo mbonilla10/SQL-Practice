@@ -1,0 +1,12 @@
+SELECT customer_add, customer_city, customer_state, customer_zip FROM customers;
+SELECT customer_name, customer_phone FROM customers WHERE customer_state in ('GA');
+SELECT customer_name, customer_zip FROM customers WHERE customer_state in ('NC','SC');
+SELECT Title, Artist, order_date, ship_date FROM items, orders, orderline WHERE items.item_id = orderline.item_id AND orderline.order_id = orders.order_id;
+SELECT item_id, Title, Artist, unit_price, on_hand FROM items ORDER BY unit_price ASC;
+SELECT item_id, Title, Artist, unit_price, on_hand FROM items WHERE unit_price > 100;
+SELECT item_id, Title, Artist, unit_price, on_hand FROM items WHERE on_hand > 300;
+SELECT Title, unit_price, (unit_price * 2) AS retail_price FROM items;
+SELECT customer_name, customer_phone FROM customers, orders WHERE customers.customer_id = orders.customer_id AND orders.order_date > "2014-01-01";
+SELECT Artist, COUNT(order_qty) AS total_prints FROM items, orderline WHERE items.item_id = orderline.item_id GROUP BY ARTIST;
+SELECT Title FROM items WHERE unit_price > 40 AND unit_price < 100;
+SELECT items.Artist, SUM(orderline.order_qty) AS Quantity FROM items LEFT OUTER JOIN orderline ON items.item_id = orderline.item_id GROUP BY items.artist ORDER BY items.artist;
